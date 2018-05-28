@@ -1,0 +1,51 @@
+@import '~@/assets/less/variable.less';
+
+.user-login,
+.user-register{
+  height: 100vh;
+  background: url(../../../assets/logo.png) no-repeat center 10%;
+}
+
+.box-header{
+  color: @main-font-color;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.login-box{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 400px;
+  height: 300px;
+  padding: 20px;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  border: 1px solid @border-color;
+}
+
+
+.field{
+  height: 40px;
+  line-height: 40px;
+  margin: 20px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.submit-button{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.to-register{
+  float: right;
+  color: @main-color;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}

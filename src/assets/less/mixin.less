@@ -1,0 +1,305 @@
+
+.display(...){
+  display: @arguments;
+}
+.display(@value)when(@value=flex){
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:@value;
+}
+.display(@value)when(@value=inline-flex){
+  display:-webkit-inline-box;
+  display:-webkit-inline-flex;
+  display:-ms-inline-flexbox;
+  display:@value;
+}
+.box-shadow(@shadow:0 0 5px #ccc){
+  box-shadow:@shadow;
+  -webkit-box-shadow:@shadow;
+}
+// 简写
+.clearfix(){
+  &:after{
+    content:"";
+    display:table;
+    clear:both;
+  }
+}
+.ellipsis(){
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+.ellipsis-2(){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+
+.ellipsis-3(){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+}
+
+.flexbox(){
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.flex(@v:1){
+  -webkit-box-flex:@v;
+  -webkit-flex:@v;
+  -ms-flex:@v;
+  flex:@v;
+}
+// 默认加webkit前缀
+.css-prefix(@property,@value){
+  -webkit-@{property}:@value;
+    @{property}:@value;
+}
+// row | column | row-reverse
+// 默认值：column
+.flex-direction(@value)when(@value=row){
+  -ms-flex-direction:@value;
+  .css-prefix(box-orient,horizontal);
+  .css-prefix(flex-direction,@value);
+}
+.flex-direction(@value:column)when(default()){
+  -ms-flex-direction:@value;
+  .css-prefix(box-orient,vertical);
+  .css-prefix(flex-direction,@value);
+}
+.flex-direction(@value)when(@value=row-reverse){
+  -ms-flex-direction:@value;
+  .css-prefix(box-direction,reverse);
+  .css-prefix(flex-direction,@value);
+}
+/* 父元素-纵向换行 */
+.flex-wrap() {
+  /* 09版 */
+  -webkit-box-lines: multiple;
+  /* 12版 */
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+// flex-start | flex-end | center | space-between
+// 默认值：center
+.justify-content(@value)when(@value=flex-start){
+  -ms-flex-pack:start;
+  .css-prefix(box-pack,start);
+  .css-prefix(justify-content,@value);
+}
+.justify-content(@value)when(@value=flex-end){
+  -ms-flex-pack:end;
+  .css-prefix(box-pack,end);
+  .css-prefix(justify-content,@value);
+}
+.justify-content(@value:center)when(default()){
+  -ms-flex-pack:@value;
+  .css-prefix(box-pack,@value);
+  .css-prefix(justify-content,@value);
+}
+.justify-content(@value)when(@value=space-between){
+  -ms-flex-pack:justify;
+  .css-prefix(box-pack,justify);
+  .css-prefix(justify-content,@value);
+}
+// flex-start | flex-end | center | stretch
+// 默认值：center
+.align-items(@value)when(@value=flex-start){
+  -ms-flex-align:start;
+  .css-prefix(box-align,start);
+  .css-prefix(align-items,@value);
+}
+.align-items(@value)when(@value=flex-end){
+  -ms-flex-align:end;
+  .css-prefix(box-align,end);
+  .css-prefix(align-items,@value);
+}
+.align-items(@value:center)when(default()){
+  -ms-flex-align:@value;
+  .css-prefix(box-align,@value);
+  .css-prefix(align-items,@value);
+}
+.align-items(@value)when(@value=stretch){
+  -ms-flex-align:@value;
+  .css-prefix(box-align,@value);
+  .css-prefix(align-items,@value);
+}
+
+.callee(@counter, @max, @depth, @key, @prototype) when(@counter <= @max) {
+  .@{key}@{counter} {
+      @{prototype}: unit(@counter, px) !important;
+  }
+  .callee(@counter + @depth, @max, @depth, @key, @prototype);
+}
+// margin边距
+.callee(0, 60, 2, m, margin);
+.callee(0, 60, 2, ml, margin-left);
+.callee(0, 60, 2, mt, margin-top);
+.callee(0, 60, 2, mr, margin-right);
+.callee(0, 60, 2, mb, margin-bottom);
+// padding边距
+.callee(0, 60, 2, p, padding);
+.callee(0, 60, 2, pt, padding-top);
+.callee(0, 60, 2, pr, padding-right);
+.callee(0, 60, 2, pb, padding-bottom);
+.callee(0, 60, 2, pl, padding-left);
+// 设置文字大小
+.callee(10, 20, 1, fz, font-size);
+.callee(20, 60, 2, fz, font-size);
+
+/* common */
+.clearfix {
+  .clearfix();
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+.fwb{
+  font-weight: bold;
+}
+// 文本对齐方式
+.tac {
+  text-align: center;
+}
+.tar {
+  text-align: right;
+}
+.tal {
+  text-align: left;
+}
+// 文本描述方式
+.tdn {
+  text-decoration: none;
+}
+.tdu {
+  text-decoration: underline;
+}
+// 强制不换行
+.txt-nowrap {
+  white-space:nowrap;
+}
+
+.txt-ellipsis {
+  white-space:nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.txt-ellipsis2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+// 块级元素相互转换
+// display
+.db {
+  .display(block) !important;
+}
+.dib {
+  .display(inline-block) !important;
+}
+.dn {
+  .display(none) !important;
+}
+.di {
+  .display(inline) !important;
+}
+.dt {
+  .display(table) !important;
+}
+.dtc {
+  .display(table-cell) !important;
+}
+.df {
+  .display(flex) !important;
+}
+
+// 透明度相关模块
+// opacity
+.op0 {
+  opacity:0;
+}
+.op1 {
+  opacity:1;
+}
+
+// 基本布局类
+// flex相关
+.flex-auto {
+  .df;
+  > *:not(.flex-fixed) {
+    .flex(1);
+  }
+}
+.flex-align-center {
+  .align-items(center);
+}
+.flex-justify-center {
+  .justify-content(center);
+}
+
+
+// width
+.w100 {
+  width:100%;
+}
+
+// height
+.h100 {
+  height:100%;
+}
+
+.clearfloat:after {
+  clear:both;
+  content:'.';
+  display:block;
+  width: 0;
+  height: 0;
+  visibility:hidden;
+}
+// 手型
+.curp{
+  cursor: pointer;
+}
+
+.c-blue{
+  color: #00A8ED;
+}
+
+.bgf{
+  background-color: #fff;
+}
+
+.c-gray {
+  color: #909399;
+}
+
+.app-main{
+  min-height: 100%
+}
+
+.app-container {
+  padding: 20px;
+}
