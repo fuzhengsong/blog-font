@@ -21,6 +21,7 @@
         :imageClick="clickimage"
       ></mavon-editor>
     </div>
+    <catalog-bar></catalog-bar>
   </section>
 </template>
 
@@ -30,10 +31,18 @@
     mapGetters
   } from 'vuex'
   import PublicHeader from '@/components/PublicHeader/index.vue';
+  import CatalogBar from '@/components/Catalog/index.vue';
 
   export default {
+    data(){
+      return {
+        renderList: [],
+      }
+    },
+
     components: {
-      PublicHeader
+      PublicHeader,
+      CatalogBar
     },
 
     created() {
@@ -51,7 +60,7 @@
         getDetail: 'actionGetArticleDetail'
       }),
 
-      clickimage(){
+      clickimage() {
         return false;
       }
     }
@@ -61,9 +70,10 @@
 <style lang="less">
 
   .font-article-detail {
+
     .v-note-wrapper .v-note-panel {
       margin-top: 20px;
-      box-shadow: none;
+      box-shadow: none !important;
     }
 
     .v-show-content {

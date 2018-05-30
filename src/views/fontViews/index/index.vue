@@ -47,9 +47,6 @@
               </div>
             </div>
             <div class="article-content">
-              <div class="picture-article">
-
-              </div>
               <div class="article-text">
                 <mavon-editor v-model="item.content" defaultOpen="preview" :subfield="false" :toolbarsFlag="false" :imageClick="clickimage"></mavon-editor>
               </div>
@@ -173,220 +170,226 @@
   }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
   @import "~@/assets/less/variable.less";
   @import "~@/assets/less/mixin.less";
 
 
-  .article-list-enter-active, .article-list-leave-active{
-    transition: all 1s;
-  }
-
-  .article-list-enter, .article-list-leave-to{
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  .v-show-content{
-    padding: 0 !important;
-    background-color: #fff !important;
-  }
-  .tagcloud {
-    visibility: hidden;
-    display: block;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .tagcloud > a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    line-height: 1;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 2px 4px;
-    background-color: transparent;
-    border: 1px solid transparent;
-    color: #333;
-  }
-  .tagcloud > a:hover {
-    background-color: rgba(180, 180, 180, .15);
-    border: 1px solid #666;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-  }
-  /* light */
-  .tagcloud.tagcloud-light > a {
-    color: #fff;
-  }
-  .tagcloud.tagcloud-light > a:hover {
-    background-color: rgba(255, 255, 255, .1);
-    border: 1px solid #fff;
-  }
-
   .index{
-    background-color: #f4f4f4;
-  }
+    .article-list-enter-active, .article-list-leave-active{
+      transition: all 1s;
+    }
 
-  .top-image{
-    width: 100%;
-    min-width: 1100px;
-    background:  url('../../../assets/image/background.jpg') no-repeat center center;
-    background-size: cover;
-    height: 400px;
-  }
+    .article-list-enter, .article-list-leave-to{
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .v-show-content{
+      padding: 0 !important;
+      background-color: #fff !important;
+    }
+    .tagcloud {
+      visibility: hidden;
+      display: block;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .tagcloud > a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: 1;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 2px 4px;
+      background-color: transparent;
+      border: 1px solid transparent;
+      color: #333;
+    }
+    .tagcloud > a:hover {
+      background-color: rgba(180, 180, 180, .15);
+      border: 1px solid #666;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+    }
+    /* light */
+    .tagcloud.tagcloud-light > a {
+      color: #fff;
+    }
+    .tagcloud.tagcloud-light > a:hover {
+      background-color: rgba(255, 255, 255, .1);
+      border: 1px solid #fff;
+    }
 
-  .main{
-    width: 1100px;
-    margin: 0 auto;
-    padding: 40px 0;
-    overflow: hidden;
+    .index{
+      background-color: #f4f4f4;
+    }
 
-    .left-side {
-      width: 300px;
-      padding: 0 20px 40px 0;
-      margin-right: 40px;
+    .top-image{
+      width: 100%;
+      min-width: 1100px;
+      background:  url('../../../assets/image/background.jpg') no-repeat center center;
+      background-size: cover;
+      height: 400px;
+    }
 
-      .author-area{
-        padding-bottom: 40px;
-        border-bottom: 1px solid @border-color;
-      }
-      .avatar {
-        width: 60px;
-        height: 60px;
-        position: relative;
-        border-radius: 50%;
-        overflow: hidden;
+    .main{
+      width: 1100px;
+      margin: 0 auto;
+      padding: 40px 0;
+      overflow: hidden;
 
-        img {
-          width: 100%;
+      .left-side {
+        width: 300px;
+        padding: 0 20px 40px 0;
+        margin-right: 40px;
+
+        .author-area{
+          padding-bottom: 40px;
+          border-bottom: 1px solid @border-color;
         }
-      }
-
-      .blog-name{
-        line-height: 1.5;
-
-        p{
-          margin: 0
-        }
-      }
-
-      .desc{
-        font-size: 14px;
-        color: @second-font-color;
-      }
-
-      .tagCloud-container{
-        width: 280px;
-        height: 200px;
-        margin-top: 20px;
-      }
-    }
-
-    .right-side{
-      width: 750px;
-    }
-
-    .article{
-      background-color: #fff;
-      padding-bottom: 40px;
-      border: 1px solid @border-color;
-      margin-bottom: 40px;
-    }
-
-    .header-article{
-      .flexbox();
-      padding: 0 40px;
-      border-bottom: 1px solid @border-color;
-
-      .header-left-article{
-        .flex(1);
-        padding: 30px 20px 30px 0;
-
-        border-right: 1px solid @border-color;
-      }
-
-      .article-name{
-        font-size: 20px;
-        font-weight: bold;
-        margin: 0;
-        cursor: pointer;
-      }
-
-      .tags-name{
-        width: 80%;
-        margin-top: 10px;
-
-        .tag-name{
-          display: inline-block;
-          height: 20px;
-          line-height: 20px;
-          font-size: 14px;
-          padding: 0 5px;
-          margin-right: 10px;
-          border-bottom: 1px dashed @border-color;
-          cursor: pointer;
-          color: @second-font-color;
-
-          &:hover{
-            color: @main-font-color
-          }
-        }
-      }
-    }
-
-
-    .header-right-author{
-      width: 200px;
-      padding: 30px 0 30px;
-      text-align: right;
-
-      .create-time{
-        font-size: 12px;
-        font-weight: bold;
-        letter-spacing: .1em;
-      }
-
-      .author-info{
-        margin-top: 10px;
-
-        .avatar{
-          width: 35px;
-          height: 35px;
+        .avatar {
+          width: 60px;
+          height: 60px;
+          position: relative;
           border-radius: 50%;
           overflow: hidden;
 
-          img{
+          img {
             width: 100%;
           }
         }
 
-        .name{
-          height: 35px;
-          line-height: 35px;
-          padding-right: 6px;
+        .blog-name{
+          line-height: 1.5;
+
+          p{
+            margin: 0
+          }
+        }
+
+        .desc{
+          font-size: 14px;
           color: @second-font-color;
-          margin: 0;
+        }
+
+        .tagCloud-container{
+          width: 280px;
+          height: 200px;
+          margin-top: 20px;
         }
       }
-    }
-    .article-content{
-      padding: 10px 20px;
 
-      .article-text{
-        font-size: 14px;
-        color: @main-font-color;
-        text-indent: 2em;
+      .right-side{
+        width: 750px;
       }
-    }
 
-    .continue-button{
-      margin-left: 40px;
-      width: 220px;
-      height: 50px;
+      .article{
+        background-color: #fff;
+        padding-bottom: 40px;
+        border: 1px solid @border-color;
+        margin-bottom: 40px;
+      }
+
+      .header-article{
+        .flexbox();
+        padding: 0 40px;
+        border-bottom: 1px solid @border-color;
+
+        .header-left-article{
+          .flex(1);
+          padding: 30px 20px 30px 0;
+
+          border-right: 1px solid @border-color;
+        }
+
+        .article-name{
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0;
+          cursor: pointer;
+        }
+
+        .tags-name{
+          width: 80%;
+          margin-top: 10px;
+
+          .tag-name{
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            padding: 0 5px;
+            margin-right: 10px;
+            border-bottom: 1px dashed @border-color;
+            cursor: pointer;
+            color: @second-font-color;
+
+            &:hover{
+              color: @main-font-color
+            }
+          }
+        }
+      }
+
+
+      .header-right-author{
+        width: 200px;
+        padding: 30px 0 30px;
+        text-align: right;
+
+        .create-time{
+          font-size: 12px;
+          font-weight: bold;
+          letter-spacing: .1em;
+        }
+
+        .author-info{
+          margin-top: 10px;
+
+          .avatar{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img{
+              width: 100%;
+            }
+          }
+
+          .name{
+            height: 35px;
+            line-height: 35px;
+            padding-right: 6px;
+            color: @second-font-color;
+            margin: 0;
+          }
+        }
+      }
+      .article-content{
+        padding: 10px 20px;
+
+        .article-text{
+          font-size: 14px;
+          color: @main-font-color;
+          text-indent: 2em;
+        }
+
+        .v-note-wrapper .v-note-panel {
+          margin-top: 20px;
+          box-shadow: none;
+        }
+      }
+
+      .continue-button{
+        margin-left: 40px;
+        width: 220px;
+        height: 50px;
 
         button {
           display: block;
@@ -405,6 +408,9 @@
             color: @second-font-color;
           }
         }
+      }
     }
   }
+
+
 </style>

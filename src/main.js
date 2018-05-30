@@ -13,6 +13,7 @@ import './filters/index';
 import mavonEditor from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css'
 import '@/assets/font/iconfont.js';
+import './components/CatalogList/index';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
