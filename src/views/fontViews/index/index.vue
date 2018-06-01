@@ -245,7 +245,7 @@
 
           .author-area {
             text-align: center;
-            padding: 0 30px 20px;
+            padding: 30px 20px;
           }
           .avatar {
             width: 60px;
@@ -298,7 +298,7 @@
           text-align: center;
 
           .header-left-article {
-            padding: 14px 10px 14px 0;
+            padding: 14px 0;
           }
 
           .article-name {
@@ -330,7 +330,7 @@
         }
 
         .header-right-author {
-          padding: 14px 0 14px;
+          padding-top: 14px;
           text-align: center;
 
           .create-time {
@@ -376,7 +376,7 @@
         }
 
         .continue-button {
-          margin-left: 40px;
+          margin-left: 10px;
           width: 180px;
           height: 40px;
 
