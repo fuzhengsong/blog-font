@@ -376,8 +376,9 @@
         }
 
         .continue-button {
+          display: inline-block;
           margin-left: 10px;
-          width: 180px;
+          padding: 0 10px;
           height: 40px;
 
           button {
