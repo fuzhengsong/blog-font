@@ -36,13 +36,17 @@
   import {
     mapGetters
   } from 'vuex';
+  import {
+    debounce
+  } from 'lodash';
 
   export default {
 
     data(){
       return {
         catalogShow: false,
-        list : []
+        list : [],
+        clientInner: (document.documentElement.clientHeight || window.innerHeight) +'px'
       }
     },
     watch: {
@@ -60,11 +64,11 @@
       }
     },
 
-    computed: {
-      clientInner(){
-        return (document.documentElement.clientHeight || window.innerHeight) +'px'
-      },
+    created(){
+      window.addEventListener('resize', debounce(this.addListener, 200));
+    },
 
+    computed: {
       ...mapGetters({
         detail: 'getArticleDetail'
       })
@@ -85,6 +89,11 @@
             _this.watchImages(images)
           }
         },200)
+      },
+
+      addListener(){
+        this.clientInner = (document.documentElement.clientHeight || window.innerHeight) +'px';
+        console.log(this.clientInner)
       },
 
       createCatalog() {
@@ -152,111 +161,124 @@
         this.list = renderList;
 
       }
+    },
+
+    beforeDestroy(){
+      window.removeEventListener('resize', debounce(this.addListener, 200));
     }
   }
 </script>
 
 <style lang="less">
 
-  @media screen and(max-height: 1100px){
+  @media screen and(max-width: 900px){
+
     .article-catalog{
       display: none;
+      overflow: hidden;
     }
+
   }
 
-  .icon-enter-active, .icon-leave-active{
-    transition: opacity .3s ;
-  }
+  @media screen and(min-width: 900px) {
 
-  .icon-enter, .icon-leave-to{
-    opacity: 0;
-  }
+    .icon-enter-active, .icon-leave-active{
+      transition: opacity .3s ;
+    }
 
-  .slide-enter-active, .slide-leave-active{
-    transition: transform .3s ;
-  }
+    .icon-enter, .icon-leave-to{
+      opacity: 0;
+    }
 
-  .slide-enter, .slide-leave-to{
-    transform: translateX(320px);
-  }
+    .slide-enter-active, .slide-leave-active{
+      transition: transform .3s ;
+    }
 
-  .article-catalog{
+    .slide-enter, .slide-leave-to{
+      transform: translateX(320px);
+    }
 
-    .catalog-inner{
-      position: relative;
-      padding: 20px 10px;
-      color: #999;
-      text-align: center;
+    .article-catalog{
+      display: block;
+      overflow: hidden;
 
-      .header{
-        height: 30px;
-        line-height: 30px;
+      .catalog-inner{
+        position: relative;
+        padding: 20px 10px;
+        color: #999;
+        text-align: center;
+
+        .header{
+          height: 30px;
+          line-height: 30px;
+          color: #87daff;
+        }
+
+        .catalog-list{
+          max-height: ~"calc(100vh - 100px)";
+          width: ~"calc(100% + 20px)";
+          overflow: auto;
+        }
+
+        .nav{
+          padding: 0 2px 5px 10px;
+          font-size: 14px;
+
+          li{
+            width: 260px;
+            padding-left: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+            line-height: 1.8;
+          }
+
+          span{
+            transition: all .3s ease;
+            border-bottom: 1px solid #999;
+            cursor: pointer;
+
+            &.active{
+              color: #87daff;
+              border-color: #87daff;
+            }
+
+            &:hover{
+              text-decoration: none;
+              color: #87daff;
+              border-color: #87daff;
+            }
+          }
+        }
+      }
+
+      .catalogs{
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 320px;
+        background-color: #222;
+        z-index: 5000;
+      }
+
+      .icon-control{
+        position: fixed;
+        right: 40px;
+        bottom: 10%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        background-color: #222;
+        z-index: 6000;
+      }
+
+      .icon{
+        font-size: 18px;
         color: #87daff;
+        cursor: pointer;
       }
+  }
 
-      .catalog-list{
-        max-height: ~"calc(100vh - 100px)";
-        width: ~"calc(100% + 20px)";
-        overflow: auto;
-      }
-
-      .nav{
-        padding: 0 2px 5px 10px;
-        font-size: 14px;
-
-        li{
-          width: 260px;
-          padding-left: 10px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow:ellipsis;
-          line-height: 1.8;
-        }
-
-        span{
-          transition: all .3s ease;
-          border-bottom: 1px solid #999;
-          cursor: pointer;
-
-          &.active{
-            color: #87daff;
-            border-color: #87daff;
-          }
-
-          &:hover{
-            text-decoration: none;
-            color: #87daff;
-            border-color: #87daff;
-          }
-        }
-      }
-    }
-
-    .catalogs{
-      position: fixed;
-      right: 0;
-      top: 0;
-      width: 320px;
-      background-color: #222;
-      z-index: 5000;
-    }
-
-    .icon-control{
-      position: fixed;
-      right: 40px;
-      bottom: 10%;
-      width: 20px;
-      height: 20px;
-      text-align: center;
-      line-height: 20px;
-      background-color: #222;
-      z-index: 6000;
-    }
-
-    .icon{
-      font-size: 18px;
-      color: #87daff;
-      cursor: pointer;
-    }
   }
 </style>
