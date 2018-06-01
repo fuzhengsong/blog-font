@@ -158,6 +158,12 @@
 
 <style lang="less">
 
+  @media screen and(max-height: 1100px){
+    .article-catalog{
+      display: none;
+    }
+  }
+
   .icon-enter-active, .icon-leave-active{
     transition: opacity .3s ;
   }
