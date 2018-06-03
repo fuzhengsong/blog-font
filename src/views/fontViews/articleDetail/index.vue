@@ -94,7 +94,7 @@
     @media screen and(min-width: 769px) and(max-width: 1100px) {
 
       .article-header {
-        width: 300px;
+        width: 400px;
         margin: 0 auto;
       }
 
@@ -112,7 +112,7 @@
 
     @media screen and (min-width: 1100px) {
       .article-header {
-        width: 300px;
+        width: 500px;
         margin: 0 auto;
       }
 
