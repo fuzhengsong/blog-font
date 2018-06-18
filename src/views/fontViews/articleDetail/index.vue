@@ -75,7 +75,7 @@
 
     @media screen and(max-width: 769px) {
       .article-header {
-        width: 50%;
+        width: 80%;
         margin: 0 auto;
       }
 

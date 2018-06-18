@@ -32,7 +32,7 @@ const scrollTo = function (scrollDuration, targetPos) {
 };
 
 Vue.component('catalog-list', {
-  render: function (createElement) {
+  render: function(createElement) {
     function createEle(data, pre) {
       return createElement('ul', {
           'class': {
@@ -66,11 +66,9 @@ Vue.component('catalog-list', {
         })
       )
     }
-
     if (this.list.length) {
       return createEle(this.list);
     }
-
   },
 
   props: {
