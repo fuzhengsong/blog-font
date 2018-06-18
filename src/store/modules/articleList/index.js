@@ -15,13 +15,14 @@ const state = {
   },
   articleDetail: {
     detail: {},
+    near: {},
     loading: false
   }
 };
 
 const getters = {
   getArticleList: state => state.articleList,
-  getArticleDetail: state => state.articleDetail
+  getArticleDetail: state => state.articleDetail,
 };
 
 const actions = {
@@ -52,6 +53,7 @@ const actions = {
     return GetArticleDetailModel.execute({id: data}).then(response =>{
       commit('UPDATE_ARTICLE_DETAIL', {
         detail: response.data.detail,
+        near: response.data.near,
         loading: false
       });
       return response.data;

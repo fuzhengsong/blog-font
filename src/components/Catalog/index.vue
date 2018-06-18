@@ -91,7 +91,6 @@
 
       addListener(){
         this.clientInner = (document.documentElement.clientHeight || window.innerHeight) +'px';
-        console.log(this.clientInner)
       },
 
       createCatalog() {

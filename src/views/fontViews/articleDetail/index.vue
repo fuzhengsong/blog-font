@@ -2,9 +2,9 @@
   <section class="font-article-detail">
     <public-header></public-header>
 
-    <div class="article-header">
+    <div class="article-header" v-if="detail.detail.title">
       <p class="article-title">{{detail.detail.title}}</p>
-      <div class="time tac mt6">
+      <div class="time tac mt16">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-rili"></use>
         </svg>
@@ -20,7 +20,19 @@
         :toolbarsFlag="false"
         :imageClick="clickimage"
       ></mavon-editor>
+      <div class="article-footer mt20 c-blue mb20" v-if="detail.near">
+        <router-link
+          v-if="detail.near.pre"
+          :to="{name: 'article_detail', params: {id: detail.near.pre.id}}"
+          class="pre-article"><<&nbsp;上一篇：{{detail.near.pre.title}}</router-link>
+        <router-link
+          v-if="detail.near.next"
+          :to="{name: 'article_detail', params: {id: detail.near.next.id}}"
+          class="next-article">下一篇：{{detail.near.next.title}}&nbsp;>></router-link>
+      </div>
+
     </div>
+
     <catalog-bar></catalog-bar>
   </section>
 </template>
@@ -43,6 +55,14 @@
     components: {
       PublicHeader,
       CatalogBar
+    },
+
+    watch: {
+      '$route'(to,from){
+          if(to.name === 'article_detail' && to.params.id !== from.params.id){
+            window.location.reload();
+          }
+      }
     },
 
     created() {
@@ -69,7 +89,7 @@
 
 <style lang="less">
 
-
+  @import '~@/assets/less/mixin.less';
 
   .font-article-detail {
 
@@ -88,6 +108,15 @@
       .article-content {
         width: 100%;
         padding: 0 20px;
+
+        .article-footer{
+
+          a{
+            display: block;
+            margin: 10px 0;
+          }
+
+        }
       }
     }
 
@@ -107,6 +136,18 @@
       .article-content {
         width: 100%;
         padding: 0 20px;
+
+        .article-footer{
+          .clearfix();
+
+          .pre-article{
+            float: left;
+          }
+
+          .next-article{
+            float: right;
+          }
+        }
       }
     }
 
@@ -125,6 +166,18 @@
       .article-content {
         width: 900px;
         margin: 0 auto;
+      }
+
+      .article-footer{
+        .clearfix();
+
+        .pre-article{
+          float: left;
+        }
+
+        .next-article{
+          float: right;
+        }
       }
     }
 
